@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "typeRoots": [
+      "./node_modules/@types/"
+    ],
+    "target": "es2016",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "src",
+    "wwwroot"
+  ],
+  "include": [
+    "package.json" 
+    // workaround. usually this should be a .ts 
+    // file. but if I add an empty .ts file, 
+    // vscode gives me an error, so..
+  ]
+}

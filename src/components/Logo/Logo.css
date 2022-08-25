@@ -1,0 +1,10 @@
+.tilt {
+  /* background: linear-gradient(89deg, #eba1f3 0%, #4e0258 100%); */
+  background-image: url(./space2.png);
+  /* background-color: white; */
+  opacity: .7;
+}
+
+.logo-wrapper {
+  margin-top: -6em;
+}

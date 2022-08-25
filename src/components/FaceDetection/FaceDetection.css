@@ -1,0 +1,31 @@
+
+.faceDetectionModal {
+  position: absolute;
+  z-index: 50;
+  width: 40em;
+  /* background-color: gray; */
+  justify-content: space-evenly;
+}
+.img-data-list {
+  list-style-type: none;
+  padding: 0;
+  width: 80%;
+  margin: 2em;
+  
+}
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+.list-item-data {
+  margin: auto 1rem;
+
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 44em){
+  .faceDetectionModal {
+    display: flex;
+  }
+}
