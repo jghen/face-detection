@@ -15,5 +15,14 @@
 
 }
 
+.info {
+  width: clamp(70%, 85%, 90%); 
+}
+
+@media only screen and (min-width: 44em){
+  .info {
+    width: clamp(50%, 55%, 60%); 
+  }
+}
 
 

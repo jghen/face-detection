@@ -10,7 +10,7 @@
   list-style-type: none;
   padding: 0;
   width: 80%;
-  margin: 2em;
+  margin: 0 2em;
   
 }
 .list-item {
@@ -20,8 +20,10 @@
 }
 .list-item-data {
   margin: auto 1rem;
-
-  font-weight: bold;
+  /* font-weight: bold; */
+}
+img {
+  margin: 2em;
 }
 
 @media only screen and (min-width: 44em){

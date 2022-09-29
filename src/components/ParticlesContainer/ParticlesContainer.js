@@ -1,14 +1,12 @@
-import React, { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import particlesOptions from "../../particles.json";
+import React from 'react'
+import ParticlesBg from 'particles-bg'
 
 export function ParticlesContainer() {
 
-  const particlesInit = useCallback(main => {
-    loadFull(main);
-    }, [])
-
-
-  return <Particles options={particlesOptions} init={particlesInit}/>;
+  return (
+    <>
+      <div>...</div>
+      <ParticlesBg color="#007700" num={100} type="cobweb" bg={true} />
+    </>
+  );
 }

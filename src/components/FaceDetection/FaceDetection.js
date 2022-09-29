@@ -26,7 +26,7 @@ const FaceDetection = ({imgUrl, dataArray}) => {
             })
           }
         </ul>
-        <img className="ma0 pa0" src={imgUrl} width='350px' height='auto' alt="face" />
+        <img className="ma0 pa0" src={imgUrl} width='300px' height='100%' alt="face" />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import './ImageLinkForm.css';
 const ImageLinkForm = ({inputChange, inputSubmit}) => {
   return (
     <div>
-      <p className="gray f3 center w-70">
+      <p className="info gray f3 center ">
         {'Prøv face-detection! Maskinlærings-algoritmen kjenner igjen fjes, stemninger og "konsepter" fra bilder. Lim inn en bildelink og sjekk det ut!'}
       </p>
       <div className="center">
