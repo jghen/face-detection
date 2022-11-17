@@ -4,15 +4,14 @@ import Clarifai from "clarifai";
 import "tachyons";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
-import Navigation from "./components/navigation/Navigation";
-
+import Navigation from "./components/Navigation/Navigation";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import FaceDetection from "./components/FaceDetection/FaceDetection";
 import "./App.css";
 
 const app = new Clarifai.App({
-  apiKey: "85708f6c5a29471e8ecaa002f44f985c"
+  apiKey: "85708f6c5a29471e8ecaa002f44f985c",
 });
 
 // const {ClarifaiStub, grpc} = require("clarifai-nodejs-grpc");
@@ -31,8 +30,29 @@ class App extends React.Component {
       data: [],
       route: "signin",
       isSignedIn: false,
+      user: {
+        id: "",
+        name: "",
+        email: "",
+        password: "",
+        entries: 0,
+        joined: "",
+      },
     };
   }
+
+  loadUser = (data) => {
+    const { id, name, email, entries, joined } = data;
+    this.setState({
+      user: {
+        id: id,
+        name: name,
+        email: email,
+        entries: entries,
+        joined: joined,
+      },
+    });
+  };
 
   displayModal = () => {
     const faceDetectionModal = document.querySelector(".faceDetectionModal");
@@ -60,7 +80,7 @@ class App extends React.Component {
     this.setState({ data: concepts });
   };
 
-  onButtonSubmit = () => {
+  onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input });
 
     this.hideModal();
@@ -97,9 +117,30 @@ class App extends React.Component {
 
     app.models
       .predict("aaa03c23b3724a16a56b629203edc62c", this.state.input)
-      .then((response) =>
-        this.displayFaceConcepts(this.calculateFaceConcepts(response))
-      )
+      .then((response) => {
+        if (response) {
+          const route = "/image";
+          const options = {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id: this.state.user.id,
+            }),
+          };
+          fetch(`http://localhost:5000${route}`, options)
+            .then((resp) => resp.json())
+            .then((count) => {
+              console.log(count);
+              this.setState({
+                user: {
+                  ...this.state.user,
+                  entries: count,
+                },
+              });
+            });
+        }
+        this.displayFaceConcepts(this.calculateFaceConcepts(response));
+      })
       .catch((err) => console.log("error: ", err));
 
     this.displayModal();
@@ -115,7 +156,8 @@ class App extends React.Component {
   };
 
   render() {
-    const { isSignedIn, imageUrl, route, data } = this.state;
+    const { isSignedIn, imageUrl, route, data, user } = this.state;
+    console.log(route, isSignedIn);
 
     return (
       <div className="App">
@@ -123,21 +165,23 @@ class App extends React.Component {
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
+          route={route}
         />
-        {route === "home" ? (
-          <>
-            <Rank />
-            <ImageLinkForm
-              inputChange={this.onInputChange}
-              inputSubmit={this.onButtonSubmit}
-            />
-            <FaceDetection dataArray={data} imgUrl={imageUrl} />
-          </>
-        ) : route === "register" ? (
-          <Register onRouteChange={this.onRouteChange} />
-        ) : (
-          <Signin onRouteChange={this.onRouteChange} />
-        )}
+        {route === "home" 
+          ? <>
+              <Rank name={user.name} entries={user.entries} />
+              <ImageLinkForm
+                inputChange={this.onInputChange}
+                inputSubmit={this.onPictureSubmit}
+              />
+              <FaceDetection dataArray={data} imgUrl={imageUrl} />
+            </>
+          : ( 
+            route === "signin" 
+            ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+            : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
+          )
+        }
       </div>
     );
   }
