@@ -19,7 +19,6 @@ class Register extends React.Component {
     this.setState({ password: event.target.value });
   };
   onSubmitRegister = (event) => {
-    console.log(event.type, event.key);
     if (
       (event.key === "Enter" && event.type === "keyup") ||
       event.type === "click"

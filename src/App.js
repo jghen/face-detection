@@ -72,7 +72,6 @@ class App extends React.Component {
 
   calculateFaceConcepts = (data) => {
     const concepts = data.outputs[0].data.concepts;
-    console.log(concepts);
     return concepts;
   };
 
@@ -130,7 +129,6 @@ class App extends React.Component {
           fetch(`http://localhost:5000${route}`, options)
             .then((resp) => resp.json())
             .then((count) => {
-              console.log(count);
               this.setState({
                 user: {
                   ...this.state.user,
@@ -157,7 +155,7 @@ class App extends React.Component {
 
   render() {
     const { isSignedIn, imageUrl, route, data, user } = this.state;
-    console.log(route, isSignedIn);
+    console.log(route);
 
     return (
       <div className="App">
@@ -177,7 +175,7 @@ class App extends React.Component {
               <FaceDetection dataArray={data} imgUrl={imageUrl} />
             </>
           : ( 
-            route === "signin" 
+            route === "signin" || route === 'signout'
             ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
             : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} /> 
           )

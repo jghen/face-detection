@@ -15,7 +15,6 @@ class Signin extends React.Component {
     this.setState({ signInPassword: event.target.value });
   };
   onSubmitSignin = (event) => {
-    console.log(event.type, event.key);
     if (
       (event.key === "Enter" && event.type === "keyup") ||
       event.type === "click"
