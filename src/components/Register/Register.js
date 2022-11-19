@@ -1,4 +1,5 @@
 import React from "react";
+import { validateEmail, validatePassword, validateName } from "../../utils/checkCredentials.js";
 
 class Register extends React.Component {
   constructor(props) {
@@ -9,16 +10,22 @@ class Register extends React.Component {
       name: "",
     };
   }
+
   onNameChange = (event) => {
     this.setState({ name: event.target.value });
   };
+
   onEmailChange = (event) => {
     this.setState({ email: event.target.value });
   };
+
   onPasswordChange = (event) => {
     this.setState({ password: event.target.value });
   };
+
   onSubmitRegister = (event) => {
+    const {email, name, password} = this.state;
+    
     if (
       (event.key === "Enter" && event.type === "keyup") ||
       event.type === "click"
@@ -28,22 +35,23 @@ class Register extends React.Component {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-          name: this.state.name,
+          email: email,
+          password: password,
+          name: name,
         }),
       };
       fetch(`http://localhost:5000${route}`, options)
         .then((response) => response.json())
         .then((user) => {
-          if (user.id) {
+          if (user.id && validateName(name) && validateEmail(email) && validatePassword(password)) {
             this.props.loadUser(user);
             this.props.onRouteChange("home");
             return;
           }
           this.displayErrorMessage();
           return; //if not success return
-        });
+        })
+        .catch(console.log);
     }
     return;
   };
@@ -59,7 +67,7 @@ class Register extends React.Component {
 
   displayErrorMessage() {
     document.querySelector("#errorContainer").textContent =
-      "user already exists";
+      "Kan ikke registrere.\r\nBrukeren eksisterer allerede eller du \r\ntastet et ugyldig epost eller passord: \r\n- Passord må være lengre enn 4 \r\n- Passord må inneholde et tall";
     return;
   }
   render() {
@@ -106,7 +114,7 @@ class Register extends React.Component {
                 />
               </div>
             </fieldset>
-            <p id="errorContainer" className="red ma0"></p>
+            <p id="errorContainer" style={{whiteSpace: 'pre'}} className="red ma0"></p>
             <div className="">
               <input
                 onClick={this.onSubmitRegister}

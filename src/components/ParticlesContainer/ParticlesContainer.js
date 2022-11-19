@@ -6,7 +6,7 @@ export function ParticlesContainer() {
   return (
     <>
       <div>...</div>
-      <ParticlesBg color="#003300" num={100} type="cobweb" bg={true} />
+      <ParticlesBg color="#003300" num={50} type="cobweb" bg={true} />
     </>
   );
 }

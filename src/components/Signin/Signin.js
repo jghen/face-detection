@@ -1,4 +1,5 @@
 import React from "react";
+import { validateEmail, validatePassword } from "../../utils/checkCredentials.js";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -8,13 +9,17 @@ class Signin extends React.Component {
       signInPassword: "",
     };
   }
+
   onEmailChange = (event) => {
     this.setState({ signInEmail: event.target.value });
   };
+
   onPasswordChange = (event) => {
     this.setState({ signInPassword: event.target.value });
   };
+
   onSubmitSignin = (event) => {
+    const {signInEmail, signInPassword} = this.state;
     if (
       (event.key === "Enter" && event.type === "keyup") ||
       event.type === "click"
@@ -24,41 +29,41 @@ class Signin extends React.Component {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: this.state.signInEmail,
-          password: this.state.signInPassword,
+          email: signInEmail,
+          password: signInPassword,
         }),
       };
       fetch(`http://localhost:5000${route}`, options)
         .then((response) => response.json())
         .then((user) => {
-          if (user.id) {
+          if (user.id && validateEmail(signInEmail) && validatePassword(signInPassword)) {
             this.props.loadUser(user);
             this.props.onRouteChange("home");
             return;
           }
           this.displayErrorMessage();
           return; //if not success return
-        });
-
-      // if password or email not correct
-      //return and somethin
-
-      //if password is correct
+        })
+        .catch(console.log);
     }
     return;
   };
+
   componentDidMount() {
     window.addEventListener("keyup", this.onSubmitSignin);
   }
+
   componentWillUnmount() {
     this.removeEventListenerSignin();
   }
+
   removeEventListenerSignin() {
     window.removeEventListener("keyup", this.onSubmitSignin);
   }
+
   displayErrorMessage() {
     document.querySelector("#errorContainer").textContent =
-      "wrong username or password";
+      "Feil epost eller passord";
     return;
   }
 

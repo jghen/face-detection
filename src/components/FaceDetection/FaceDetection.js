@@ -3,7 +3,7 @@ import './FaceDetection.css';
 
 const FaceDetection = ({imgUrl, dataArray}) => {
 
-  const dataArraySliced = dataArray.slice(0,15);
+  const dataArraySliced = dataArray.slice(0,8);
 
   return (
     <div className="center">
