@@ -21,9 +21,9 @@ class Signin extends React.Component {
   onSubmitSignin = (event) => {
     const {signInEmail, signInPassword} = this.state;
 
-    if (validateEmail(signInEmail)===false || validatePassword(signInPassword)===false) {
-      return this.displayErrorMessage();
-    }
+    // if (validateEmail(signInEmail)===false || validatePassword(signInPassword)===false) {
+    //   return this.displayErrorMessage();
+    // }
 
     if (
       (event.key === "Enter" && event.type === "keyup") ||

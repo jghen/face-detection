@@ -26,9 +26,9 @@ class Register extends React.Component {
   onSubmitRegister = (event) => {
     const {email, name, password} = this.state;
 
-    if (validateName(name)===false || validateEmail(email)===false || validatePassword(password)===false) {
-      return this.displayErrorMessage();
-    }
+    // if (validateName(name)===false || validateEmail(email)===false || validatePassword(password)===false) {
+    //   return this.displayErrorMessage();
+    // }
     
     if (
       (event.key === "Enter" && event.type === "keyup") ||
