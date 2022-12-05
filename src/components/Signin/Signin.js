@@ -30,7 +30,7 @@ class Signin extends React.Component {
       event.type === "click"
     ) {
       const route = "/signin";
-      const url = 'https://https://jgh-face-detecion-api.herokuapp.com';
+      const url = 'https://jgh-face-detecion-api.herokuapp.com';
       const options = {
         method: "post",
         headers: { "Content-Type": "application/json" },
