@@ -89,7 +89,7 @@ class App extends React.Component {
     this.hideModal();
 
     const route = "/imageUrl";
-    const url = 'https://https://jgh-face-detecion-api.herokuapp.com';
+    const url = 'https://jgh-face-detecion-api.herokuapp.com';
     const options = {
       method: "post",
       headers: { "Content-Type": "application/json" },
