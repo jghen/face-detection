@@ -21,7 +21,7 @@ class Signin extends React.Component {
   onSubmitSignin = (event) => {
     const {signInEmail, signInPassword} = this.state;
 
-    if (!validateEmail(email) || !validatePassword(password)) {
+    if (validateEmail(signInEmail)===false || validatePassword(signInPassword)===false) {
       return this.displayErrorMessage();
     }
 
