@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Face detection-project
+
+This repository contains the frontend for my face-detection project. I use the general model from [Clarifai-api](https://www.clarifai.com/).
+The general model gives concepts in your image. Upload an image and see what it's about. It's quite accurate (and fun)^.
+
 ## Available Scripts
 
 In the project directory, you can run:
