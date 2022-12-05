@@ -1,7 +1,7 @@
 import React from "react";
 import { ParticlesContainer } from "./components/ParticlesContainer/ParticlesContainer";
 import "tachyons";
-import Navigation from "./components/navigation/Navigation";
+import Navigation from "./components/Navigation/Navigation";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
