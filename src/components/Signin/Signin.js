@@ -25,6 +25,7 @@ class Signin extends React.Component {
       event.type === "click"
     ) {
       const route = "/signin";
+      const url = 'https://https://jgh-face-detecion-api.herokuapp.com';
       const options = {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -33,7 +34,7 @@ class Signin extends React.Component {
           password: signInPassword,
         }),
       };
-      fetch(`http://localhost:5000${route}`, options)
+      fetch(`${url}${route}`, options)
         .then((response) => response.json())
         .then((user) => {
           if (user.id && validateEmail(signInEmail) && validatePassword(signInPassword)) {

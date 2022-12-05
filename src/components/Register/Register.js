@@ -31,6 +31,7 @@ class Register extends React.Component {
       event.type === "click"
     ) {
       const route = "/register";
+      const url = 'https://https://jgh-face-detecion-api.herokuapp.com';
       const options = {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -40,7 +41,7 @@ class Register extends React.Component {
           name: name,
         }),
       };
-      fetch(`http://localhost:5000${route}`, options)
+      fetch(`${url}${route}`, options)
         .then((response) => response.json())
         .then((user) => {
           if (user.id && validateName(name) && validateEmail(email) && validatePassword(password)) {

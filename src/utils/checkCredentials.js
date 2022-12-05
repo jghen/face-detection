@@ -17,7 +17,7 @@ export const validateEmail = (email) => {
 export const validatePassword = (password) => {
   return (
     typeof password === "string" &&
-    password.length > 4 &&
+    password.length > 6 &&
     /[a-zA-z]/.test(password) &&
     /[0-9]/.test(password)
   );

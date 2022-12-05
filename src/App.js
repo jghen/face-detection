@@ -89,6 +89,7 @@ class App extends React.Component {
     this.hideModal();
 
     const route = "/imageUrl";
+    const url = 'https://https://jgh-face-detecion-api.herokuapp.com';
     const options = {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -97,7 +98,7 @@ class App extends React.Component {
       }),
     };
 
-    fetch(`http://localhost:5000${route}`, options)
+    fetch(`${url}${route}`, options)
       .then((resp) => resp.json())
       .then((response) => {
         if (response) {
@@ -109,7 +110,7 @@ class App extends React.Component {
               id: this.state.user.id,
             }),
           };
-          fetch(`http://localhost:5000${route}`, options)
+          fetch(`${url}${route}`, options)
             .then((resp) => resp.json())
             .then((count) => {
               this.setState({
