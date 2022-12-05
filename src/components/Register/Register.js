@@ -25,6 +25,10 @@ class Register extends React.Component {
 
   onSubmitRegister = (event) => {
     const {email, name, password} = this.state;
+
+    if (!validateName(name) || !validateEmail(email) || !validatePassword(password)) {
+      return this.displayErrorMessage()
+    }
     
     if (
       (event.key === "Enter" && event.type === "keyup") ||
@@ -68,7 +72,7 @@ class Register extends React.Component {
 
   displayErrorMessage() {
     document.querySelector("#errorContainer").textContent =
-      "Kan ikke registrere.\r\nBrukeren eksisterer allerede eller du \r\ntastet et ugyldig epost eller passord: \r\n- Passord må være lengre enn 4 \r\n- Passord må inneholde et tall";
+      "Kan ikke registrere.\r\nBrukeren eksisterer allerede eller du \r\ntastet et ugyldig epost eller passord: \r\n- Passord må være lengre enn 6 \r\n- Passord må inneholde et tall";
     return;
   }
   render() {
